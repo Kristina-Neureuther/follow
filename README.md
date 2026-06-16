@@ -1,6 +1,7 @@
-# Follow 👁️
+# Follow 👁️👁️
 
 > "Ich finde gute Lösungen" (Discovering Leverage Points)
+> > "I discover effective solutions" 
 
 A minimalist visual tool designed for cognitive pacing, pattern processing, and strategic focus, tailored for systems thinkers, designers, and strategists.
 
