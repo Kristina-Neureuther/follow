@@ -18,7 +18,7 @@
         /* Der Textblock über dem Kunstwerk */
         .header-section {
             position: absolute;
-            top: 12%;
+            top: 10%;
             width: 100%;
             text-align: center;
             color: #e0e6ed;
@@ -29,7 +29,7 @@
         .eyes-icon {
             display: block;
             font-size: 3rem;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             opacity: 0.9;
         }
 
@@ -47,8 +47,18 @@
             display: block;
             font-size: 1.4rem;
             color: #8a99ad;
-            margin-top: 8px;
+            margin-top: 6px;
             font-style: italic;
+        }
+
+        /* Die neue, dezente Steuerungs-Anleitung in der Mitte */
+        .instructions {
+            display: block;
+            font-size: 0.95rem;
+            color: #5c697a;
+            margin-top: 18px;
+            letter-spacing: 0.5px;
+            line-height: 1.4;
         }
 
         /* Die dezente Geschwindigkeitsanzeige unten rechts */
@@ -70,12 +80,17 @@
     <span class="eyes-icon">👀</span>
     <span class="headline">Ich finde gute Lösungen</span>
     <span class="subheadline">I discover effective solutions</span>
+    
+    <span class="instructions">
+        Wähle dein eigenes Tempo mit den Pfeiltasten [↑] [↓]<br>
+        <i>Choose your own tempo with arrow keys [↑] [↓]</i>
+    </span>
 </div>
 
 <div id="speedometer" class="speed-display">Tempo: 100%</div>
 
 <script>
-// Start-Geschwindigkeit (Standardwert entspricht deinem Lieblingstempo)
+// Start-Geschwindigkeit
 let baseSpeed = 0.95; 
 let currentSpeed = baseSpeed;
 let ballSize = 35; // Größe des Punkts
@@ -88,12 +103,8 @@ function draw() {
     // Kleiner Alpha-Wert für einen ganz zarten Schweif-Effekt
     background(18, 20, 28, 40); 
     
-    // Wir berechnen die Zeit basierend auf der veränderbaren Geschwindigkeit
-    // Dadurch läuft die Animation auch bei Tempowechseln absolut ruckelfrei
     let time = millis() / 1000;
-    
-    // Y-Position des Punktes
-    let y = height * 0.55; 
+    let y = height * 0.58; // Leicht nach unten versetzt, damit Platz für die Anleitung ist
     
     // Berechnung der Links-Rechts-Bewegung mittels Sinus (5% Puffer zum Rand)
     let margin = width * 0.05; 
@@ -115,12 +126,12 @@ function draw() {
 }
 
 function handleControls() {
-    // Pfeiltaste NACH OBEN -> Schneller (Maximum bei ca. 2.5)
+    // Pfeiltaste NACH OBEN -> Schneller
     if (keyIsDown(UP_ARROW)) {
         currentSpeed = min(currentSpeed + 0.01, 2.5);
         updateSpeedDisplay();
     }
-    // Pfeiltaste NACH UNTEN -> Langsamer (Minimum bei 0.1)
+    // Pfeiltaste NACH UNTEN -> Langsamer
     if (keyIsDown(DOWN_ARROW)) {
         currentSpeed = max(currentSpeed - 0.01, 0.1);
         updateSpeedDisplay();
