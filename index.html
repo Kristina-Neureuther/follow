@@ -1,5 +1,66 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Follow - Systems Thinking & Focus Tool</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #12141c; /* Beruhigendes, tiefes Dunkelblau-Grau */
+            overflow: hidden;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        
+        /* Der Textblock über dem Kunstwerk */
+        .header-section {
+            position: absolute;
+            top: 12%;
+            width: 100%;
+            text-align: center;
+            color: #e0e6ed;
+            pointer-events: none; /* Klicks gehen durch den Text ans Canvas */
+        }
+
+        /* Die Augen-Emojis für die intuitive Anleitung */
+        .eyes-icon {
+            display: block;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        /* Die deutsche Überschrift */
+        .headline {
+            display: block;
+            font-size: 2.2rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-shadow: 0 0 20px rgba(255,255,255,0.1);
+        }
+
+        /* Das englische Äquivalent direkt darunter */
+        .subheadline {
+            display: block;
+            font-size: 1.4rem;
+            color: #8a99ad;
+            margin-top: 8px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header-section">
+    <span class="eyes-icon">👀</span>
+    <span class="headline">Ich finde gute Lösungen</span>
+    <span class="subheadline">I discover effective solutions</span>
+</div>
+
 <script>
-// Die Geschwindigkeit wurde auf 1.25 erhöht für ein schnelles, aktives Tracking von Rand zu Rand
+// Schnelle, dynamische Links-Rechts-Bewegung für aktives Tracking
 let speed = 1.25; 
 let ballSize = 35; // Größe des Punkts
 
@@ -17,10 +78,11 @@ function draw() {
     let y = height * 0.55; 
     
     // Berechnung der Links-Rechts-Bewegung mittels Sinus
+    // Auf 5% reduziert, damit der Punkt maximal weit nach links und rechts fliegt
     let margin = width * 0.05; 
     let x = map(sin(time * speed * TWO_PI), -1, 1, margin, width - margin);
     
-    // Wir zeichnen ein sanftes, fokussierendes Licht
+    // Wir zeichnen ein sanftes, fokussierendes Licht (helles Pastell-Cyan/Grün)
     noStroke();
     fill(140, 215, 230);
     
@@ -36,3 +98,6 @@ function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
 }
 </script>
+
+</body>
+</html>
