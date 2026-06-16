@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Follow - EMDR & Wingwave Code Art</title>
+    <title>Follow - Systems Thinking & Focus Tool</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
     <style>
         body {
@@ -21,20 +21,33 @@
             width: 100%;
             text-align: center;
             color: #e0e6ed;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 300;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             text-shadow: 0 0 20px rgba(255,255,255,0.1);
             pointer-events: none; /* Klicks gehen durch den Text ans Canvas */
+        }
+
+        /* Das englische Äquivalent direkt darunter */
+        .subheadline {
+            display: block;
+            font-size: 1.4rem;
+            color: #8a99ad;
+            margin-top: 8px;
+            font-style: italic;
         }
     </style>
 </head>
 <body>
 
-<div class="headline">Ich finde gute Lösungen</div>
+<div class="headline">
+    Ich finde gute Lösungen
+    <span class="subheadline">I discover effective solutions</span>
+</div>
 
 <script>
-let speed = 0.35; // Geschwindigkeit der Augenbewegung (höher = schneller, niedriger = langsamer)
+// Die Geschwindigkeit wurde von 0.35 auf 0.55 erhöht für eine dynamischere Links-Rechts-Bewegung
+let speed = 0.55; 
 let ballSize = 35; // Größe des Punkts, damit man ihm leicht folgen kann
 
 function setup() {
@@ -51,12 +64,11 @@ function draw() {
     let y = height * 0.55; 
     
     // Berechnung der Links-Rechts-Bewegung mittels Sinus
-    // map() sorgt dafür, dass der Punkt nicht ganz an den Rand klatscht (lässt 15% Puffer links und rechts)
+    // lässt 15% Puffer links und rechts
     let margin = width * 0.15;
     let x = map(sin(time * speed * TWO_PI), -1, 1, margin, width - margin);
     
-    // Wir zeichnen ein sanftes, beruhigendes Licht (helles Pastell-Cyan/Grün)
-    // Cyan wirkt nachweislich beruhigend auf das Nervensystem
+    // Wir zeichnen ein sanftes, fokussierendes Licht (helles Pastell-Cyan/Grün)
     noStroke();
     fill(140, 215, 230);
     
