@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Follow - EMDR & Wingwave Code Art</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #12141c; /* Beruhigendes, tiefes Dunkelblau-Grau */
+            overflow: hidden;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        
+        /* Die Überschrift über dem Kunstwerk */
+        .headline {
+            position: absolute;
+            top: 15%;
+            width: 100%;
+            text-align: center;
+            color: #e0e6ed;
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(255,255,255,0.1);
+            pointer-events: none; /* Klicks gehen durch den Text ans Canvas */
+        }
+    </style>
+</head>
+<body>
+
+<div class="headline">Ich finde gute Lösungen</div>
+
+<script>
+let speed = 0.35; // Geschwindigkeit der Augenbewegung (höher = schneller, niedriger = langsamer)
+let ballSize = 35; // Größe des Punkts, damit man ihm leicht folgen kann
+
+function setup() {
+    createCanvas(windowWidth, windowHeight);
+}
+
+function draw() {
+    // Kleiner Alpha-Wert für einen ganz zarten Schweif-Effekt, der die Bewegung flüssiger wirken lässt
+    background(18, 20, 28, 40); 
+    
+    let time = millis() / 1000;
+    
+    // Y-Position ist genau in der Mitte des Bildschirms
+    let y = height * 0.55; 
+    
+    // Berechnung der Links-Rechts-Bewegung mittels Sinus
+    // map() sorgt dafür, dass der Punkt nicht ganz an den Rand klatscht (lässt 15% Puffer links und rechts)
+    let margin = width * 0.15;
+    let x = map(sin(time * speed * TWO_PI), -1, 1, margin, width - margin);
+    
+    // Wir zeichnen ein sanftes, beruhigendes Licht (helles Pastell-Cyan/Grün)
+    // Cyan wirkt nachweislich beruhigend auf das Nervensystem
+    noStroke();
+    fill(140, 215, 230);
+    
+    // Hauptpunkt
+    ellipse(x, y, ballSize, ballSize);
+    
+    // Ein kleiner, weicher Glow-Effekt im Hintergrund des Punktes
+    fill(140, 215, 230, 30);
+    ellipse(x, y, ballSize * 1.6, ballSize * 1.6);
+}
+
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+}
+</script>
+
+</body>
+</html>
