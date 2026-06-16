@@ -15,22 +15,14 @@
             user-select: none; /* Verhindert versehentliches Markieren von Text */
         }
         
-        /* Der Textblock über dem Kunstwerk */
+        /* Der Textblock oben (feste Überschrift) */
         .header-section {
             position: absolute;
-            top: 10%;
+            top: 15%;
             width: 100%;
             text-align: center;
             color: #e0e6ed;
             pointer-events: none; /* Klicks gehen durch den Text ans Canvas */
-        }
-
-        /* Die Augen-Emojis für die intuitive Anleitung */
-        .eyes-icon {
-            display: block;
-            font-size: 3rem;
-            margin-bottom: 12px;
-            opacity: 0.9;
         }
 
         /* Die deutsche Überschrift */
@@ -47,21 +39,24 @@
             display: block;
             font-size: 1.4rem;
             color: #8a99ad;
-            margin-top: 6px;
+            margin-top: 8px;
             font-style: italic;
         }
 
-        /* Die neue, dezente Steuerungs-Anleitung in der Mitte */
-        .instructions {
-            display: block;
-            font-size: 0.95rem;
+        /* Die neue, dezente Anleitung unten in der Mitte */
+        .footer-instructions {
+            position: absolute;
+            bottom: 25px;
+            width: 100%;
+            text-align: center;
             color: #5c697a;
-            margin-top: 18px;
+            font-size: 0.95rem;
             letter-spacing: 0.5px;
-            line-height: 1.4;
+            line-height: 1.5;
+            pointer-events: none;
         }
 
-        /* Die dezente Geschwindigkeitsanzeige unten rechts */
+        /* Die Prozentanzeige für das Tempo unten rechts */
         .speed-display {
             position: absolute;
             bottom: 25px;
@@ -77,14 +72,13 @@
 <body>
 
 <div class="header-section">
-    <span class="eyes-icon">👀</span>
     <span class="headline">Ich finde gute Lösungen</span>
     <span class="subheadline">I discover effective solutions</span>
-    
-    <span class="instructions">
-        Wähle dein eigenes Tempo mit den Pfeiltasten [↑] [↓]<br>
-        <i>Choose your own tempo with arrow keys [↑] [↓]</i>
-    </span>
+</div>
+
+<div class="footer-instructions">
+    Track the point with your eyes for 2 minutes.<br>
+    Choose your own tempo with arrow keys [↑] [↓].
 </div>
 
 <div id="speedometer" class="speed-display">Tempo: 100%</div>
@@ -104,7 +98,7 @@ function draw() {
     background(18, 20, 28, 40); 
     
     let time = millis() / 1000;
-    let y = height * 0.58; // Leicht nach unten versetzt, damit Platz für die Anleitung ist
+    let y = height * 0.52; // Perfekt ausbalanciert zwischen Text oben und unten
     
     // Berechnung der Links-Rechts-Bewegung mittels Sinus (5% Puffer zum Rand)
     let margin = width * 0.05; 
