@@ -12,6 +12,7 @@
             background-color: #12141c; /* Beruhigendes, tiefes Dunkelblau-Grau */
             overflow: hidden;
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            user-select: none; /* Verhindert versehentliches Markieren von Text */
         }
         
         /* Der Textblock über dem Kunstwerk */
@@ -49,6 +50,18 @@
             margin-top: 8px;
             font-style: italic;
         }
+
+        /* Die dezente Geschwindigkeitsanzeige unten rechts */
+        .speed-display {
+            position: absolute;
+            bottom: 25px;
+            right: 30px;
+            color: #5c697a;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
@@ -59,9 +72,12 @@
     <span class="subheadline">I discover effective solutions</span>
 </div>
 
+<div id="speedometer" class="speed-display">Tempo: 100%</div>
+
 <script>
-// Schnelle, dynamische Links-Rechts-Bewegung für aktives Tracking
-let speed = 1.25; 
+// Start-Geschwindigkeit (Standardwert entspricht deinem Lieblingstempo)
+let baseSpeed = 0.95; 
+let currentSpeed = baseSpeed;
 let ballSize = 35; // Größe des Punkts
 
 function setup() {
@@ -72,15 +88,16 @@ function draw() {
     // Kleiner Alpha-Wert für einen ganz zarten Schweif-Effekt
     background(18, 20, 28, 40); 
     
+    // Wir berechnen die Zeit basierend auf der veränderbaren Geschwindigkeit
+    // Dadurch läuft die Animation auch bei Tempowechseln absolut ruckelfrei
     let time = millis() / 1000;
     
-    // Y-Position ist genau in der Mitte des Bildschirms
+    // Y-Position des Punktes
     let y = height * 0.55; 
     
-    // Berechnung der Links-Rechts-Bewegung mittels Sinus
-    // Auf 5% reduziert, damit der Punkt maximal weit nach links und rechts fliegt
+    // Berechnung der Links-Rechts-Bewegung mittels Sinus (5% Puffer zum Rand)
     let margin = width * 0.05; 
-    let x = map(sin(time * speed * TWO_PI), -1, 1, margin, width - margin);
+    let x = map(sin(time * currentSpeed * TWO_PI), -1, 1, margin, width - margin);
     
     // Wir zeichnen ein sanftes, fokussierendes Licht (helles Pastell-Cyan/Grün)
     noStroke();
@@ -92,6 +109,36 @@ function draw() {
     // Ein kleiner, weicher Glow-Effekt im Hintergrund des Punktes
     fill(140, 215, 230, 30);
     ellipse(x, y, ballSize * 1.6, ballSize * 1.6);
+    
+    // Überprüfen, ob Tasten gedrückt werden, um das Tempo fließend anzupassen
+    handleControls();
+}
+
+function handleControls() {
+    // Pfeiltaste NACH OBEN -> Schneller (Maximum bei ca. 2.5)
+    if (keyIsDown(UP_ARROW)) {
+        currentSpeed = min(currentSpeed + 0.01, 2.5);
+        updateSpeedDisplay();
+    }
+    // Pfeiltaste NACH UNTEN -> Langsamer (Minimum bei 0.1)
+    if (keyIsDown(DOWN_ARROW)) {
+        currentSpeed = max(currentSpeed - 0.01, 0.1);
+        updateSpeedDisplay();
+    }
+}
+
+// Aktualisiert den Prozentwert unten rechts auf dem Bildschirm
+function updateSpeedDisplay() {
+    let percentage = round((currentSpeed / baseSpeed) * 100);
+    document.getElementById('speedometer').innerText = `Tempo: ${percentage}%`;
+}
+
+// Setzt das Tempo zurück, wenn man eine beliebige andere Taste drückt (z.B. Leertaste)
+function keyPressed() {
+    if (keyCode !== UP_ARROW && keyCode !== DOWN_ARROW) {
+        currentSpeed = baseSpeed;
+        updateSpeedDisplay();
+    }
 }
 
 function windowResized() {
