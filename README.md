@@ -19,7 +19,7 @@ This tool serves as a **cognitive metronome**. By tracking the single, fluidly m
 - **Architectural Minimalism:** Eliminates all unnecessary UI components to maximize focus on the moving element and the core strategic anchor.
 
 ### Live Demo
-[Insert your GitHub Pages link here once activated!]
+[(https://kristina-neureuther.github.io/follow/)]
 
 ### Tech Stack
 - HTML5 Canvas & Vanilla CSS
