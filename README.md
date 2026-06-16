@@ -1,12 +1,8 @@
 # Follow 👁️👁️
 
-> "Ich finde gute Lösungen" (Discovering Leverage Points)
-> > "I discover effective solutions" 
-
 A minimalist visual tool designed for cognitive pacing, pattern processing, and strategic focus, tailored for systems thinkers, designers, and strategists.
 
 ### The Systems Thinking Perspective
-In system design and strategic planning, the human mind is the primary processing engine. When dealing with high-complexity architecture, feedback loops, and chaotic data points, the brain can experience cognitive overload. 
 
 This tool serves as a **cognitive metronome**. By tracking the single, fluidly moving data point from left to right, you induce a structured visual cadence. This rhythmic stimulation assists the brain in:
 - **Reducing Cognitive Noise:** Clearing mental clutter to see the actual structure of a system.
@@ -19,7 +15,7 @@ This tool serves as a **cognitive metronome**. By tracking the single, fluidly m
 - **Architectural Minimalism:** Eliminates all unnecessary UI components to maximize focus on the moving element and the core strategic anchor.
 
 ### Live Demo
-[Hier klicken für die Live Demo](https://kristina-neureuther.github.io/follow/)
+👉 [**CLICK HERE TO START THE FOCUS TOOL**](https://kristina-neureuther.github.io/follow/)
 
 ### Tech Stack
 - HTML5 Canvas & Vanilla CSS
