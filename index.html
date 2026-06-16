@@ -14,18 +14,31 @@
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
         
-        /* Die Überschrift über dem Kunstwerk */
-        .headline {
+        /* Der Textblock über dem Kunstwerk */
+        .header-section {
             position: absolute;
-            top: 15%;
+            top: 12%;
             width: 100%;
             text-align: center;
             color: #e0e6ed;
+            pointer-events: none; /* Klicks gehen durch den Text ans Canvas */
+        }
+
+        /* Die Augen-Emojis für die intuitive Anleitung */
+        .eyes-icon {
+            display: block;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        /* Die deutsche Überschrift */
+        .headline {
+            display: block;
             font-size: 2.2rem;
             font-weight: 300;
             letter-spacing: 1px;
             text-shadow: 0 0 20px rgba(255,255,255,0.1);
-            pointer-events: none; /* Klicks gehen durch den Text ans Canvas */
         }
 
         /* Das englische Äquivalent direkt darunter */
@@ -40,22 +53,23 @@
 </head>
 <body>
 
-<div class="headline">
-    Ich finde gute Lösungen
+<div class="header-section">
+    <span class="eyes-icon">👀</span>
+    <span class="headline">Ich finde gute Lösungen</span>
     <span class="subheadline">I discover effective solutions</span>
 </div>
 
 <script>
-// Die Geschwindigkeit wurde von 0.35 auf 0.55 erhöht für eine dynamischere Links-Rechts-Bewegung
+// Dynamische Links-Rechts-Bewegung
 let speed = 0.55; 
-let ballSize = 35; // Größe des Punkts, damit man ihm leicht folgen kann
+let ballSize = 35; // Größe des Punkts
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
-    // Kleiner Alpha-Wert für einen ganz zarten Schweif-Effekt, der die Bewegung flüssiger wirken lässt
+    // Kleiner Alpha-Wert für einen ganz zarten Schweif-Effekt
     background(18, 20, 28, 40); 
     
     let time = millis() / 1000;
@@ -64,8 +78,8 @@ function draw() {
     let y = height * 0.55; 
     
     // Berechnung der Links-Rechts-Bewegung mittels Sinus
-    // lässt 15% Puffer links und rechts
-    let margin = width * 0.15;
+    // Der Puffer (margin) wurde auf nur noch 5% reduziert für maximale Breite (fast bis zum Rand)
+    let margin = width * 0.05; 
     let x = map(sin(time * speed * TWO_PI), -1, 1, margin, width - margin);
     
     // Wir zeichnen ein sanftes, fokussierendes Licht (helles Pastell-Cyan/Grün)
