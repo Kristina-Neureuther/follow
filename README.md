@@ -2,6 +2,8 @@
 
 A minimalist visual tool designed for cognitive pacing, pattern processing, and strategic focus, tailored for systems thinkers, designers, and strategists.
 
+## Kristina Neureuther – Systems Thinking & Strategy
+
 ### The Systems Thinking Perspective
 
 This tool serves as a **cognitive metronome**. By tracking the single, fluidly moving data point from left to right, you induce a structured visual cadence. This rhythmic stimulation assists the brain in:
